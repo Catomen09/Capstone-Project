@@ -3,7 +3,7 @@
 	Layout = null;
 }
 
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -48,4 +48,93 @@
 		</div>
 	</div>
 </body>
+</html>
+ *@
+
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Register</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="~/concept-template-master//assets/vendor/bootstrap/css/bootstrap.min.css">
+	<link href="~/concept-template-master//assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="~/concept-template-master//assets/libs/css/style.css">
+	<link rel="stylesheet" href="~/concept-template-master//assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+
+		body {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-align: center;
+			align-items: center;
+			padding-top: 40px;
+			padding-bottom: 40px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- ============================================================== -->
+	<!-- login page  -->
+	<!-- ============================================================== -->
+	<div class="splash-container">
+		<div class="card ">
+			<div class="card-header text-center"><a href="../index.html"><img class="logo-img" src="~/concept-template-master//assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
+			<div class="card-body">
+				<form method="post">
+					<div class="form-group">
+						<input class="form-control form-control-lg" id="password" type="text" asp-for="Name" placeholder="Name">
+					</div>
+					<div class="form-group">
+						<input class="form-control form-control-lg" id="password" type="text" asp-for="Surname" placeholder="Surname">
+					</div>
+					<div class="form-group">
+						<input class="form-control form-control-lg" id="password" type="date" asp-for="DateOfBirth" placeholder="DateOfBirth">
+					</div>
+					<div class="form-group">
+						<input class="form-control form-control-lg" id="password" type="email" asp-for="Mail" placeholder="Mail">
+					</div>
+					<div class="form-group">
+						<input class="form-control form-control-lg" id="full-name" type="text" placeholder="Username" asp-for="Username" autocomplete="off">
+					</div>
+					<div class="form-group">
+						<input class="form-control form-control-lg" id="password" type="password" asp-for="Password" placeholder="Password">
+					</div>
+					@* <div class="form-group">
+					<label class="custom-control custom-checkbox">
+					<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
+					</label>
+					</div> *@
+					<button type="submit" class="btn btn-primary btn-lg btn-block" asp-controller="Register" asp-action="Index">Sign in</button>
+				</form>
+			</div>
+			<div class="card-footer bg-white p-0  ">
+			</div>
+		</div>
+	</div>
+	<script>
+		function forgotPassword() {
+			var username = document.getElementById('full-name').value;
+			window.location.href = '/Login/ForgotPassword?username=' + username;
+		}
+	</script>
+
+	<!-- ============================================================== -->
+	<!-- end login page  -->
+	<!-- ============================================================== -->
+	<!-- Optional JavaScript -->
+	<script src="~/concept-template-master//assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+	<script src="~/concept-template-master//assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+
 </html>

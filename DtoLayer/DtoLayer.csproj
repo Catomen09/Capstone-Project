@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="ExcelDataReader" Version="3.7.0-develop00385" />
+    <PackageReference Include="Microsoft.ML" Version="4.0.0-preview.24162.2" />
+    <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="4.0.0-preview.24162.2" />
   </ItemGroup>
 
 </Project>

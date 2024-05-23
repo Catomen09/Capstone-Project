@@ -5,36 +5,38 @@
 
 <div class="content">
 	<div class="container-fluid">
-		<h4 class="page-title">Excel Yükleme Sayfası</h4>
+		<h4 class="page-title">Excel Download Page</h4>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
-						@if (!string.IsNullOrEmpty(ViewBag.Message) && ViewBag.Message == "Başarılı")
+						@if (!string.IsNullOrEmpty(ViewBag.Message) && ViewBag.Message == "Successful")
 						{
 							<div class="alert alert-success" role="alert">
-								Excel Başarılı Bir Şekilde Yüklendi
+								Excel Imported Successfully
 							</div>
 						}
-						else if (!string.IsNullOrEmpty(ViewBag.Message) && ViewBag.Message == "Başarısız")
-						{
-							<div class="alert alert-warning" role="alert">
-								Excel Yüklenemedi
-							</div>
-						})
 						<form method="post" enctype="multipart/form-data">
 							<div class="row">
-								<label>Excel Yükle</label>
-								<br />
-								<input type="file" name="file" />
+								<div class="col-md-1">
+									<label for="file">Excel Import</label>
+								</div>
+								<div class="col-md-1">
+									<input type="file" id="file" name="file" />
+								</div>
 							</div>
+
 							<br />
 							<div class="row">
 								<div class="col-3">
-									<input type="submit" asp-controller="Admin" asp-action="ExcelImport" class="btn btn-dark" value="Excel Yükle" />
+									<input type="submit" asp-controller="Admin" asp-action="ExcelImport" class="btn btn-dark" value="Excel Import" />
+									<!-- İndirme bağlantısı -->
+									<a asp-controller="Admin" asp-action="DownloadExampleExcel" class="btn btn-primary">Download Example Excel</a>
+
 								</div>
 							</div>
 						</form>
+						
 					</div>
 				</div>
 

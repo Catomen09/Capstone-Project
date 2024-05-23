@@ -10,16 +10,17 @@ var requiredAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthentica
 builder.Services.AddDbContext<CapstoneContext>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<CapstoneContext>();
 builder.Services.AddHttpClient();
+
 builder.Services.AddControllersWithViews(opt =>
 {
 	opt.Filters.Add(new AuthorizeFilter(requiredAuthorizePolicy));//Bütün controllerlarýn içerisinde authorization filterini uygula diyoruz
 });
 
 builder.Services.ConfigureApplicationCookie(opts =>
-{
-	opts.LoginPath = "/Login/Index/";
+{	
+	opts.LoginPath = "/List/Index/";
 });
-
+System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,0 +1,91 @@
+﻿@model List<WebUI.Dtos.CompaniesScoresDtos.ResultCompaniesScores>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="row">
+    <!-- ============================================================== -->
+    <!-- basic table  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Basic Table</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered first" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Companie Name</th>
+                                <th>Companie Stock Code</th>
+                                <th>
+                                    Environment Score
+                                    <a id="sortIconEnv" href="#">▼</a>
+                                </th>
+                                <th>
+                                    Social Score
+                                    <a id="sortIconSoc" href="#">▼</a>
+                                </th>
+                                <th>Report Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CompanieName</td>
+                                    <td>@item.CompanieStockCode</td>
+                                    <td>@item.CompanieEScore</td>
+                                    <td>@item.CompanieSScore</td>
+                                    <td><a href="@item.ReportLink" target="_blank">@item.ReportLink</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Başlangıçta sıralama durumu
+    var orderByDescendingEnv = true;
+    var orderByDescendingSoc = true;
+
+    function sortTable(columnIndex, orderByDescending, sortIconId) {
+        var table = document.getElementById("dataTable");
+        var rows = Array.from(table.getElementsByTagName("tr")).slice(1); // İlk satır başlık olduğu için çıkarıldı
+        var sortIcon = document.getElementById(sortIconId);
+
+        // Sıralama simgesini güncelle
+        sortIcon.textContent = orderByDescending ? "▼" : "▲";
+
+        // Sıralama işlemini gerçekleştir
+        rows.sort((a, b) => {
+            var aValue = parseFloat(a.cells[columnIndex].textContent.replace(',', '.'));
+            var bValue = parseFloat(b.cells[columnIndex].textContent.replace(',', '.'));
+
+            // Geçersiz değerleri kontrol et
+            if (isNaN(aValue)) aValue = 0;
+            if (isNaN(bValue)) bValue = 0;
+
+            return orderByDescending ? bValue - aValue : aValue - bValue;
+        });
+
+        // Sıralı satırları tekrar tabloya ekle
+        rows.forEach(row => table.appendChild(row));
+    }
+
+    // Environment Score sıralama butonu
+    document.getElementById("sortIconEnv").addEventListener("click", function () {
+        orderByDescendingEnv = !orderByDescendingEnv;
+        sortTable(2, orderByDescendingEnv, "sortIconEnv");
+    });
+
+    // Social Score sıralama butonu
+    document.getElementById("sortIconSoc").addEventListener("click", function () {
+        orderByDescendingSoc = !orderByDescendingSoc;
+        sortTable(3, orderByDescendingSoc, "sortIconSoc");
+    });
+</script>

@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spline Chart with CanvasJS</title>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+    <br>
+    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+    <script>
+        window.onload = function () {
+
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Environment Score Chart"
+                },
+                axisY: {
+                    title: "EScore"
+                },
+                axisX: {
+                    title: "Company Code",
+                    interval: 1,
+                    labelFormatter: function (e) {
+                        var labels = ["YKBNK", "TKFEN", "TCELL", "SISE", "POLHO", "FROTO","DOAS","CIMSA"];
+                        return labels[e.value - 1];
+                    }
+                },
+                data: [{
+                    type: "spline",
+                    dataPoints: [
+                        { x: 1, y: 74.23 },
+                        { x: 2, y: 74.23 },
+                        { x: 3, y: 78.48 },
+                        { x: 4, y: 83.50 },
+                        { x: 5, y: 71.72 },
+                        { x: 6, y: 82.75 },
+                        { x: 7, y: 74.21 },
+                        { x: 8, y: 77.75 }
+                    ]
+                }, {
+                    type: "spline",
+                    dataPoints: [
+                        { x: 1, y: 77.108750},
+                        { x: 2, y: 77.108750},
+                        { x: 3, y: 77.108750},
+                        { x: 4, y: 77.108750},
+                        { x: 5, y: 77.108750},
+                        { x: 6, y: 77.108750},
+                        { x: 7, y: 77.108750},
+                        { x: 8, y: 77.108750}
+                    ]
+                }]
+            });
+            chart1.render();
+
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Social Score Chart"
+                },
+                axisY: {
+                    title: "SScore"
+                },
+                axisX: {
+                    title: "Company Code",
+                    interval: 1,
+                    labelFormatter: function (e) {
+                        var labels = ["YKBNK", "TKFEN", "TCELL", "SISE", "POLHO", "FROTO", "DOAS", "CIMSA"];
+                        return labels[e.value - 1];
+                    }
+                },
+                data: [{
+                    type: "spline",
+                    dataPoints: [
+                        { x: 1, y: 82.35 },
+                        { x: 2, y: 78.60 },
+                        { x: 3, y: 97.10 },
+                        { x: 4, y: 78.74 },
+                        { x: 5, y: 95.53 },
+                        { x: 6, y: 83.09 },
+                        { x: 7, y: 77.13 },
+                        { x: 8, y: 81.82 }
+                    ]
+                }, {
+                    type: "spline",
+                    dataPoints: [
+                        { x: 1, y: 84.295000},
+                        { x: 2, y: 84.295000},
+                        { x: 3, y: 84.295000},
+                        { x: 4, y: 84.295000},
+                        { x: 5, y: 84.295000},
+                        { x: 6, y: 84.295000},
+                        { x: 7, y: 84.295000},
+                        { x: 8, y: 84.295000}
+                    ]
+                }]
+            });
+            chart2.render();
+
+        }
+    </script>
+</body>
+</html>

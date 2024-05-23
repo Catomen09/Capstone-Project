@@ -44,9 +44,9 @@ namespace WebUI.Controllers
 				MailboxAddress mailboxAddressTo = new MailboxAddress("User", registerDto.Mail);
 				mimeMessage.To.Add(mailboxAddressTo);
 				var bodyBuilder = new BodyBuilder();
-				bodyBuilder.TextBody = "Capstone Admin Paneline Hoşgeldin. İyi Çalışmalar";
+				bodyBuilder.TextBody = "Welcome to Capstone Admin Panel. Enjoy your work";
 				mimeMessage.Body = bodyBuilder.ToMessageBody();
-				mimeMessage.Subject = "Giriş İşlemi Başarılı";
+				mimeMessage.Subject = "Login Process Successful";
 				SmtpClient client = new SmtpClient();
 				client.Connect("smtp.gmail.com", 587, false);
 				client.Authenticate("catobabbatuzcu@gmail.com", "lvff wwat asey tgpb");

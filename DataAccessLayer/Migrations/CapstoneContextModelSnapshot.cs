@@ -130,11 +130,15 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Entities.CompaniesInfo", b =>
                 {
-                    b.Property<int>("CompanieId")
+                    b.Property<int>("CompaniesInfoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanieId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompaniesInfoId"), 1L, 1);
+
+                    b.Property<string>("CompanieName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanieStockCode")
                         .IsRequired()
@@ -146,8 +150,15 @@ namespace DataAccessLayer.Migrations
                     b.Property<decimal>("MenEmployees")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("RatioOfWomenBoard")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("RenewableEnergy")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ReportLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Scope1")
                         .HasColumnType("decimal(18,2)");
@@ -167,9 +178,45 @@ namespace DataAccessLayer.Migrations
                     b.Property<decimal>("WomenEmployees")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("CompanieId");
+                    b.HasKey("CompaniesInfoId");
 
                     b.ToTable("CompanieInfos");
+                });
+
+            modelBuilder.Entity("EntityLayer.Entities.CompaniesScore", b =>
+                {
+                    b.Property<int>("CompaniesScoreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompaniesScoreId"), 1L, 1);
+
+                    b.Property<decimal>("CompanieEScore")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CompanieName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("CompanieSScore")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CompanieStockCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompaniesInfoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReportLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CompaniesScoreId");
+
+                    b.HasIndex("CompaniesInfoId");
+
+                    b.ToTable("CompaniesScores");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -273,6 +320,17 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("EntityLayer.Entities.CompaniesScore", b =>
+                {
+                    b.HasOne("EntityLayer.Entities.CompaniesInfo", "CompaniesInfo")
+                        .WithMany()
+                        .HasForeignKey("CompaniesInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompaniesInfo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

@@ -16,5 +16,6 @@ namespace DataAccessLayer.Concrete
 			optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS; initial Catalog=CapstoneProjectDb; integrated Security=true;TrustServerCertificate=True");
 		}
 		public DbSet<CompaniesInfo> CompanieInfos { get; set; }
+		public DbSet<CompaniesScore> CompaniesScores { get; set; }
 	}
 }

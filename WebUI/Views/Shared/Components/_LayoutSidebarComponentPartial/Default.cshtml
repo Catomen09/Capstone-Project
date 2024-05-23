@@ -1,49 +1,140 @@
-﻿<div class="sidebar">
-	<div class="scrollbar-inner sidebar-wrapper">
-		<div class="user">
-			<div class="photo">
-				<img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile.jpg">
-			</div>
-			<div class="info">
-				<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-					<span>
-						Capstone Project Yönetim Paneli
-						<span class="user-level">Admin</span>
-						<span class="caret"></span>
-					</span>
-				</a>
-				<div class="clearfix"></div>
-
-				<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
-					<ul class="nav">
-						<li>
-							<a href="/Setting/Index/">
-								<span class="link-collapse">Şifre Güncelle</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<ul class="nav">
-			<li class="nav-item">
-				<a href="/Default/Index">
-					<i class="la la-dashboard"></i>
-					<p>Siteye Git</p>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="/Setting/Index/">
-					<i class="la la-fonticons"></i>
-					<p>Ayarlar</p>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a href="/Login/Logout/">
-					<i class="la la-plane"></i>
-					<p>Çıkış Yap</p>
-				</a>
-			</li>
-		</ul>
-	</div>
+﻿<div class="nav-left-sidebar sidebar-dark">
+    <div class="menu-list">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-divider">
+                        Menu
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/List/Index"><i class="fa fa-fw fa-user-circle"></i> Data List <span class="badge badge-success"></span></a>
+                        <div id="submenu-1" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">E-Commerce</a>
+                                    <div id="submenu-1-2" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="index.html">E Commerce Dashboard</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-product.html">Product List</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-product-single.html">Product Single</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-product-checkout.html">Product Checkout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="dashboard-finance.html">Finance</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="dashboard-sales.html">Sales</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
+                                    <div id="submenu-1-1" class="collapse submenu" style="">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="dashboard-influencer.html">Influencer</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="influencer-finder.html">Influencer Finder</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="influencer-profile.html">Influencer Profile</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Index"><i class="fa fa-fw fa-user-circle"></i> Excel Import <span class="badge badge-success"></span></a>
+                        <div id="submenu-2" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/general.html">General</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/carousel.html">Carousel</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/listgroup.html">List Group</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/typography.html">Typography</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/accordions.html">Accordions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/tabs.html">Tabs</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Chart/Index"><i class="fa fa-fw fa-user-circle"></i> Charts <span class="badge badge-success"></span></a>  
+                        <div id="submenu-3" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/chart-c3.html">C3 Charts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/chart-chartist.html">Chartist Charts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/chart-charts.html">Chart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/chart-morris.html">Morris</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/chart-sparkline.html">Sparkline</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/chart-gauge.html">Guage</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/Setting/Index"><i class="fa fa-fw fa-user-circle"></i> Settings <span class="badge badge-success"></span></a>
+                        <div id="submenu-4" class="collapse submenu" style="">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/form-elements.html">Form Elements</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/form-validation.html">Parsely Validations</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/multiselect.html">Multiselect</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/datepicker.html">Date Picker</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="pages/bootstrap-select.html">Bootstrap Select</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </div>

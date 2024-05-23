@@ -1,179 +1,123 @@
 ﻿
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- navbar -->
+    <!-- ============================================================== -->
+    <div class="dashboard-header">
+        <nav class="navbar navbar-expand-lg bg-white fixed-top">
+            <a class="navbar-brand" href="index.html">Concept</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto navbar-right-top">
+                    <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Login")">Login</a>
+                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index", "Register")">Register</a>
+                </li>
+                    <li class="nav-item">
+                        <div id="custom-search" class="top-search-bar">
+                            <input class="form-control" type="text" placeholder="Search..">
+                        </div>
+                    </li>
 
-<div class="main-header">
-	<div class="logo-header">
-		<a href="index.html" class="logo">
-			SignalR Admin
-		</a>
-		<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
-	</div>
-	<nav class="navbar navbar-header navbar-expand-lg">
-		<div class="container-fluid">
-			<script type="text/javascript">
-
-				$(document).ready(() => {
-
-					var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7101/SignalRHub").build();
-					$("#connstatus").text(connection.state);
-					connection.start().then(() => {
-						$("#connstatus").text(connection.state);
-						setInterval(() => {
-							connection.invoke("SendNotification");
-						}, 1000);
-
-
-					}).catch((err) => { console.log(err) });
-
-					connection.on("ReceiveNotificationCountByStatusFalse", (value) => {
-						$("#notificationstatusfalsecount").text(value);
-					});
-					connection.on("ReceiveNotificationList", (value) => {
-						// Bildirim listesi HTML içeriğini oluştur
-						var notificationListHTML = '';
-						value.forEach(notification => {
-							notificationListHTML += `
-							<a href="#">
-								<div class="${notification.type}"> <i class="${notification.icon}"></i> </div>
-								<div class="notif-content">
-									<span class="block">
-										${notification.description}
-									</span>
-									<span class="time">${notification.date}</span>
-								</div>
-							</a>
-						`;
-						});
-
-						// Dropdown menüsüne bildirim listesini ekle
-						var dropdownMenu = document.querySelector('.notif-box');
-						dropdownMenu.innerHTML = `
-						<li>
-							<div class="dropdown-title">${value.length} Yeni Bildirim Var</div>
-						</li>
-						<li>
-							<div class="notif-center">
-								${notificationListHTML}
-							</div>
-						</li>
-						<li>
-							<a class="see-all" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="la la-angle-right"></i> </a>
-						</li>
-					`;
-					});
-
-
-				});
-			</script>
-
-			<form class="navbar-left navbar-form nav-search mr-md-3" action="">
-				<div class="input-group">
-					<input type="text" placeholder="Aranacak Kelime ..." class="form-control">
-					<div class="input-group-append">
-						<span class="input-group-text">
-							<i class="la la-search search-icon"></i>
-						</span>
-					</div>
-				</div>
-			</form>
-			<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-				<li class="nav-item dropdown hidden-caret">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="la la-envelope"></i>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Gelen Mesajlar</a>
-						<a class="dropdown-item" href="#">Rezervasyonlar</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">İletişim</a>
-					</div>
-				</li>
-				<li class="nav-item dropdown hidden-caret">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="la la-bell"></i>
-						<span class="notification" id="notificationstatusfalsecount"></span>
-					</a>
-					<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
-						<li>
-							<div class="dropdown-title">4 Yeni Bildirim Var</div>
-						</li>
-						<li>
-							<div class="notif-center">
-								<a href="#">
-									<div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
-									<div class="notif-content">
-										<span class="block">
-											New user registered
-										</span>
-										<span class="time">5 minutes ago</span>
-									</div>
-								</a>
-								<a href="#">
-									<div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-									<div class="notif-content">
-										<span class="block">
-											Rahmad commented on Admin
-										</span>
-										<span class="time">12 minutes ago</span>
-									</div>
-								</a>
-								<a href="#">
-									<div class="notif-img">
-										<img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile2.jpg" alt="Img Profile">
-									</div>
-									<div class="notif-content">
-										<span class="block">
-											Reza send messages to you
-										</span>
-										<span class="time">12 minutes ago</span>
-									</div>
-								</a>
-								<a href="#">
-									<div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-									<div class="notif-content">
-										<span class="block">
-											Farrah liked Admin
-										</span>
-										<span class="time">17 minutes ago</span>
-									</div>
-								</a>
-							</div>
-						</li>
-						<li>
-							<a class="see-all" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="la la-angle-right"></i> </a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span>Hizrian</span></span> </a>
-					<ul class="dropdown-menu dropdown-user">
-						<li>
-							<div class="user-box">
-								<div class="u-img"><img src="~/Ready-Bootstrap-Dashboard-master/assets/img/profile.jpg" alt="user"></div>
-								<div class="u-text">
-									<h4>Admin</h4>
-									<p class="text-muted">SignalR@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">Menüyü Gör</a>
-								</div>
-							</div>
-						</li>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#"><i class="ti-user"></i> Menü</a>
-						<a class="dropdown-item" href="#"></i> Ayarlar</a>
-						<a class="dropdown-item" href="#"><i class="ti-email"></i> Rezervasyonlar</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#"><i class="ti-settings"></i> Dashboard</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Çıkış Yap</a>
-					</ul>
-					<!-- /.dropdown-user -->
-				</li>
-			</ul>
-		</div>
-	</nav>
-</div>
+                    <li class="nav-item dropdown notification">
+                        <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                            <li>
+                                <div class="notification-title"> Notification</div>
+                                <div class="notification-list">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item list-group-item-action active">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img src="~/concept-template-master/assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block">
+                                                    <span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
+                                                    <div class="notification-date">2 min ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img src="~/concept-template-master/assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block">
+                                                    <span class="notification-list-user-name">John Abraham </span>is now following you
+                                                    <div class="notification-date">2 days ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img src="~/concept-template-master/assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block">
+                                                    <span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
+                                                    <div class="notification-date">2 min ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="notification-info">
+                                                <div class="notification-list-user-img"><img src="~/concept-template-master/assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                <div class="notification-list-user-block">
+                                                    <span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
+                                                    <div class="notification-date">2 min ago</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="list-footer"> <a href="#">View all notifications</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown connection">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
+                        <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
+                            <li class="connection-list">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img src="~/concept-template-master/assets/images/github.png" alt=""> <span>Github</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img src="~/concept-template-master/assets/images/dribbble.png" alt=""> <span>Dribbble</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img src="~/concept-template-master/assets/images/dropbox.png" alt=""> <span>Dropbox</span></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img src="~/concept-template-master/assets/images/bitbucket.png" alt=""> <span>Bitbucket</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img src="~/concept-template-master/assets/images/mail_chimp.png" alt=""><span>Mail chimp</span></a>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
+                                        <a href="#" class="connection-item"><img src="~/concept-template-master/assets/images/slack.png" alt=""> <span>Slack</span></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="conntection-footer"><a href="#">More</a></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown nav-user">
+                        <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/concept-template-master/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                            <div class="nav-user-info">
+                                <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                                <span class="status"></span><span class="ml-2">Available</span>
+                            </div>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>

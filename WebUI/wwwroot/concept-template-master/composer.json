@@ -1,0 +1,10 @@
+{
+    "name": "mdsystems/concept-template",
+    "description": "An admin panel theme forked from https://github.com/puikinsh/concept",
+    "type": "library",
+    "require": {
+        "twitter/bootstrap": "^4.3",
+        "components/jquery": "^3.3"
+    },
+    "license": "MIT"
+}
