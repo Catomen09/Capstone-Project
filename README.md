@@ -1,0 +1,1 @@
+We calculated the Environment and Social scores of the companies in the BIST sustainability index by training the artificial intelligence module and displayed this to the user in a simple and understandable way on the site.
